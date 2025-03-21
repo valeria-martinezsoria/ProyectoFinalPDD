@@ -2,14 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background: rgba(217, 223, 137, 0.938);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('https://images.unsplash.com/photo-1495195129352-aeb325a55b65'); /* Imagen de fondo */
+  background-size: cover; /* Cubre toda la pantalla */
+  background-position: center; /* Centra la imagen */
+  background-attachment: fixed; /* Fija la imagen para que no se desplace */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
