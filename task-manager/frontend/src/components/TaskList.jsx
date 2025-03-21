@@ -66,9 +66,19 @@ function TaskList() {
       });
 
       // Actualizar el estado en el backend
-      TaskService.update(movedTask.id, movedTask).catch((error) => {
-        console.error("Error updating task:", error);
-      });
+      TaskService.update(movedTask.id, movedTask)
+        .then(() => {
+          console.log("Task updated successfully");
+        })
+        .catch((error) => {
+          console.error("Error updating task:", error);
+          // Revertir el cambio en el frontend si la actualización en el backend falla
+          setTasks((prevTasks) => ({
+            ...prevTasks,
+            [source.droppableId]: [...sourceColumn, movedTask],
+            [destination.droppableId]: destColumn.filter((task) => task.id !== movedTask.id),
+          }));
+        });
     }
   };
 
@@ -90,7 +100,7 @@ function TaskList() {
 
   return (
     <div>
-      <h2>Lista de Tareas: ⌚</h2>
+      
       <TaskForm onTaskAdded={handleTaskAdded} /> {/* Pasa la función como prop */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -125,12 +135,23 @@ function TaskList() {
                           }}
                         >
                           <strong>{task.title}</strong> - {task.description}
-                          <button
-                            onClick={() => handleDelete(task.id)}
-                            style={{ marginLeft: "8px" }}
-                          >
-                            Eliminar
-                          </button>
+<button
+  onClick={() => handleDelete(task.id)}
+  style={{
+    marginLeft: "8px",
+    backgroundColor: "#ff4d4d", // Fondo rojo
+    color: "white", // Texto blanco
+    border: "none", // Sin borde
+    borderRadius: "4px", // Bordes redondeados
+    padding: "6px 12px", // Padding para mejor aspecto
+    cursor: "pointer", // Cursor tipo pointer
+    transition: "background-color 0.3s ease", // Transición suave
+  }}
+  onMouseOver={(e) => (e.target.style.backgroundColor = "#cc0000")} // Efecto hover
+  onMouseOut={(e) => (e.target.style.backgroundColor = "#ff4d4d")} // Restaurar color
+>
+  Eliminar
+</button>
                         </div>
                       )}
                     </Draggable>

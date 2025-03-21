@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const DragAndDrop = ({ tasks, onTaskMove }) => {
@@ -14,9 +14,23 @@ const DragAndDrop = ({ tasks, onTaskMove }) => {
     onTaskMove(source, destination);
   };
 
+  // Función para obtener el color de fondo según el estado de la tarea
+  const getTaskBackgroundColor = (columnId) => {
+    switch (columnId) {
+      case 'PENDING':
+        return '#f39c12'; // Naranja
+      case 'IN_PROGRESS':
+        return '#3498db'; // Celeste
+      case 'DONE':
+        return '#2ecc71'; // Verde
+      default:
+        return '#f4f4f4'; // Color por defecto
+    }
+  };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '20px' }}>
         {Object.keys(tasks).map((columnId) => (
           <Droppable droppableId={columnId} key={columnId}>
             {(provided) => (
@@ -27,10 +41,11 @@ const DragAndDrop = ({ tasks, onTaskMove }) => {
                   width: '30%',
                   padding: '16px',
                   border: '1px solid #ccc',
-                  borderRadius: '4px',
+                  borderRadius: '8px',
+                  backgroundColor: '#f9f9f9',
                 }}
               >
-                <h2>{columnId}</h2>
+                <h2 style={{ textAlign: 'center', marginBottom: '16px', color: '#333' }}>{columnId}</h2>
                 {tasks[columnId].map((task, index) => (
                   <Draggable draggableId={task.id} index={index} key={task.id}>
                     {(provided) => (
@@ -39,11 +54,13 @@ const DragAndDrop = ({ tasks, onTaskMove }) => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={{
-                          padding: '8px',
+                          padding: '12px',
                           margin: '8px 0',
-                          backgroundColor: '#f4f4f4',
+                          backgroundColor: getTaskBackgroundColor(columnId),
                           border: '1px solid #ddd',
-                          borderRadius: '4px',
+                          borderRadius: '6px',
+                          color: '#fff',
+                          fontWeight: '500',
                           ...provided.draggableProps.style,
                         }}
                       >
