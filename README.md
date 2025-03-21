@@ -74,17 +74,4 @@ Abre la aplicación:
 
 Abre tu navegador y visita http://localhost:3000.
 
-Estructura del Proyecto
-Copy
-ProyectoFinalPDD/
-├── public/                  # Archivos estáticos (HTML, imágenes)
-├── src/                     # Código fuente de la aplicación
-│   ├── components/          # Componentes de React
-│   │   ├── TaskForm.jsx     # Formulario para agregar tareas
-│   │   └── TaskList.jsx     # Lista de tareas
-│   ├── servicesFacade/      # Servicios (Patrón Facade)
-│   │   └── TaskService.js   # Servicio para gestionar tareas
-│   ├── App.js               # Componente principal
-│   └── index.js             # Punto de entrada de la aplicación
-├── package.json             # Dependencias y scripts
-└── README.md                # Este archivo
+
