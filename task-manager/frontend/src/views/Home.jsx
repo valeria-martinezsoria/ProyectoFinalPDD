@@ -12,7 +12,6 @@ function Home() {
 
   return (
     <div>
-      <TaskForm onTaskAdded={handleTaskAdded} />
       <TaskList key={tasksUpdated} /> {/* Usar key para forzar la recarga de TaskList */}
     </div>
   );

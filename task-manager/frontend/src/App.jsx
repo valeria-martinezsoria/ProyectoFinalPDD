@@ -7,12 +7,9 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
 
