@@ -3,13 +3,17 @@ import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 
 function Home() {
-  const [refresh, setRefresh] = useState(false);
+  const [tasksUpdated, setTasksUpdated] = useState(false);
+
+  // Función para notificar que se ha agregado una nueva tarea
+  const handleTaskAdded = () => {
+    setTasksUpdated((prev) => !prev); // Cambia el estado para forzar la actualización de TaskList
+  };
 
   return (
     <div>
-      <h1>Gestor de Tareas</h1>
-      <TaskForm onTaskAdded={() => setRefresh(!refresh)} />
-      <TaskList key={refresh} />
+      <TaskForm onTaskAdded={handleTaskAdded} />
+      <TaskList key={tasksUpdated} /> {/* Usar key para forzar la recarga de TaskList */}
     </div>
   );
 }

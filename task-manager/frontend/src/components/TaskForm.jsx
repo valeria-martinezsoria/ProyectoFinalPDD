@@ -7,11 +7,30 @@ function TaskForm({ onTaskAdded }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar que los campos no estén vacíos
+    if (!title.trim() || !description.trim()) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
+    // Crear la nueva tarea
     const newTask = { title, description, status: "pending" };
-    await TaskService.create(newTask); // Llamada al servicio para crear la tarea
-    setTitle(""); // Limpiar el campo de título
-    setDescription(""); // Limpiar el campo de descripción
-    onTaskAdded(); // Llamada a la función que actualiza el estado del componente principal
+
+    try {
+      // Enviar la tarea al backend
+      const createdTask = await TaskService.create(newTask);
+
+      // Limpiar los campos del formulario
+      setTitle("");
+      setDescription("");
+
+      // Notificar al componente padre que se ha agregado una nueva tarea
+      onTaskAdded(createdTask);
+    } catch (error) {
+      console.error("Error creating task:", error);
+      alert("Hubo un error al crear la tarea. Por favor, inténtalo de nuevo.");
+    }
   };
 
   return (
@@ -32,6 +51,7 @@ function TaskForm({ onTaskAdded }) {
           placeholder="Descripción"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          required
         ></textarea>
         <button type="submit">Agregar</button>
       </form>
