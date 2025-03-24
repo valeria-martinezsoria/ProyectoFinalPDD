@@ -34,26 +34,38 @@ function TaskForm({ onTaskAdded }) {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: '20px' }}>
       <div className="title-container">
         <h1 className="title">Gestor de Tareas:</h1>
       </div>
-      <form onSubmit={handleSubmit}>
-        <h3>Agrega una nueva tarea: 🗒️</h3>
+        <h3 style={{ textAlign: 'center', color: '#568281' }}>Agrega una nueva tarea: 🗒️</h3>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input
           type="text"
           placeholder="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ddd' }}
         />
         <textarea
           placeholder="Descripción"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
+          style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ddd', resize: 'vertical' }}
         ></textarea>
-        <button type="submit">Agregar</button>
+        <button type="submit"
+          style={{
+            padding: '10px',
+            backgroundColor: '#3b99ba',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >Agregar
+        </button>
       </form>
     </div>
   );

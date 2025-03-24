@@ -1,29 +1,23 @@
 /* Estilos generales de la aplicación */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@400;600&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-image: url('https://i.pinimg.com/736x/19/a2/ed/19a2ed877fce88b3bb1abaca793b1eaa.jpg'); /* Imagen de fondo */
-  background-size: cover; /* Cubre toda la pantalla */
-  background-position: center; /* Centra la imagen */
-  background-attachment: fixed; /* Fija la imagen para que no se desplace */
+  font-family: 'Arial', sans-serif;
+  background-color: #ded7c9;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
-  color: #333;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco semi-transparente */
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 600px;
-  margin: 20px;
 }
 
 /* Estilos para el título interactivo */
@@ -35,7 +29,7 @@ body {
 .title {
   font-size: 2.8rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: #568281;
   display: inline-block;
   padding: 12px 24px;
   border: 3px solid #2c3e50;
@@ -51,9 +45,65 @@ body {
   background-color: rgba(255, 255, 255, 1);
 }
 
-h1, h2, h3 {
-  color: #2c3e50;
+h1 {
+  font-size: 1.5rem;
+  color: #568281;
+  margin-bottom: 20px;
   text-align: center;
+}
+
+.section {
+  margin-bottom: 25x;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #568281;
+  margin-bottom: 15px;
+  padding-left: 10px;
+  border-left: 4px solid #007bff;
+}
+.task {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.task span {
+  font-size: 1.2rem;
+  color: #333333;
+}
+.task button {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.task button:hover {
+  background-color: #c82333;
+}
+
+.add-task {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.add-task input, .add-task textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 /* Estilo base para todas las tareas */
@@ -74,19 +124,16 @@ h1, h2, h3 {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo para tareas pendientes */
 .task-item.pending {
-  border-left-color: #f39c12; /* Naranja */
+  border-left-color: #f39c12;
 }
 
-/* Estilo para tareas en progreso */
 .task-item.in-progress {
-  border-left-color: #3498db; /* Azul */
+  border-left-color: #3498db;
 }
 
-/* Estilo para tareas hechas */
 .task-item.done {
-  border-left-color: #2ecc71; /* Verde */
+  border-left-color: #2ecc71;
 }
 
 input[type="text"], textarea {
@@ -106,10 +153,10 @@ textarea {
 
 button {
   padding: 12px 24px;
-  background-color: #27ae60; /* Verde */
+  background-color: #ff66c4;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
@@ -117,13 +164,13 @@ button {
 }
 
 button:hover {
-  background-color: #219653; /* Verde oscuro */
+  background-color: #0056b3;
   transform: translateY(-2px);
 }
 
 /* Estilos específicos para el botón de eliminar */
 .task-item button.delete-button {
-  background-color: #e74c3c; /* Rojo */
+  background-color: #e74c3c;
   margin-left: 12px;
 }
 
@@ -135,20 +182,38 @@ button:hover {
 .section-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: #568281;
   margin-bottom: 15px;
   text-align: left;
   padding-left: 10px;
   border-left: 4px solid #3498db; /* Azul */
 }
 
-/* Estilos para el botón de agregar tarea */
 .add-task-button {
-  width: 100%;
-  margin-top: 15px;
-  background-color: #3498db; /* Azul */
+    background-color: #91b8c1;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
-
 .add-task-button:hover {
-  background-color: #2980b9; /* Azul oscuro */
+  background-color: #0056b3; /* Azul oscuro */
 }
+.status-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+.pending {
+  background-color: #ff5757;
+}
+.in-progress {
+  background-color: #ffbd59;
+}
+.done {
+  background-color: #7ed957;

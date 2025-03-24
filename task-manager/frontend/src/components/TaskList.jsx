@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import TaskService from "../servicesFacade/TaskService";
 import TaskForm from "./TaskForm";
+import DragAndDrop from "./DragAndDrop";
 
 function TaskList() {
   const [tasks, setTasks] = useState({
@@ -100,7 +101,6 @@ function TaskList() {
 
   return (
     <div>
-      
       <TaskForm onTaskAdded={handleTaskAdded} /> {/* Pasa la función como prop */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -134,7 +134,8 @@ function TaskList() {
                             ...provided.draggableProps.style,
                           }}
                         >
-                          <strong>{task.title}</strong> - {task.description}
+<span className={`status-icon ${task.status}`}></span>
+<strong>{task.title}</strong> - {task.description}
 <button
   onClick={() => handleDelete(task.id)}
   style={{

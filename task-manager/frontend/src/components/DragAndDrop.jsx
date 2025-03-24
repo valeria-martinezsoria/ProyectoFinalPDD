@@ -1,7 +1,7 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
-const DragAndDrop = ({ tasks, onTaskMove }) => {
+const DragAndDrop = ({ tasks, onTaskMove ,onDelete}) => {
   const onDragEnd = (result) => {
     const { source, destination } = result;
 
@@ -17,11 +17,11 @@ const DragAndDrop = ({ tasks, onTaskMove }) => {
   // Función para obtener el color de fondo según el estado de la tarea
   const getTaskBackgroundColor = (columnId) => {
     switch (columnId) {
-      case 'PENDING':
+      case 'pending':
         return '#f39c12'; // Naranja
-      case 'IN_PROGRESS':
+      case 'in-progress':
         return '#3498db'; // Celeste
-      case 'DONE':
+      case 'done':
         return '#2ecc71'; // Verde
       default:
         return '#f4f4f4'; // Color por defecto
@@ -61,10 +61,29 @@ const DragAndDrop = ({ tasks, onTaskMove }) => {
                           borderRadius: '6px',
                           color: '#fff',
                           fontWeight: '500',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
                           ...provided.draggableProps.style,
                         }}
                       >
-                        {task.content}
+                          <div style={{display: 'flex',alignItems:'center'}}>
+                          <span className={`status-icon ${columnId}`}></span>
+                          <span>{task.title} - {task.description}</span>
+                          </div>
+                          <button
+                          onClick={() => onDelete(task.id)}
+                           style={{
+                               backgroundColor: '#dc3545',
+                               color: '#ffffff',
+                               border: 'none',
+                               padding: '5px 10px',
+                               borderRadius: '4px',
+                               cursor: 'pointer',
+                               }}
+                           >
+                           Eliminar
+                           </button>
                       </div>
                     )}
                   </Draggable>
